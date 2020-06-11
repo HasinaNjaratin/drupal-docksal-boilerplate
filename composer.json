@@ -1,6 +1,6 @@
 {
-    "name" : "hasinanjaratin/drupal-boilerplate",
-    "description" : "Drupal setup with composer and grumphp.",
+    "name" : "hasinanjaratin/drupal-docksal-boilerplate",
+    "description" : "Drupal setup with docksal, composer, xdebug and grumphp ",
     "type" : "project",
     "license" : "GPL-2.0-or-later",
     "authors" : [{

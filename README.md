@@ -1,40 +1,58 @@
-This project template provides a starter kit to manage drupal project with composer and [grumphp](https://github.com/phpro/grumphp).
+This project template provides a starter kit to manage drupal project with [Docksal](https://docksal.io/), [xdebug](https://xdebug.org/) and [grumphp](https://github.com/phpro/grumphp).
 It is set with most popular and used modules for drupal, such as [devel](https://www.drupal.org/project/devel), [config_split](https://www.drupal.org/project/config_split), [paragraphs](https://www.drupal.org/project/paragraphs), etc ...
 
 **Table of Contents**
 
+- [Docksal](#docksal)
 - [Composer](#composer)
 - [Xdebug](#xdebug)
 - [Configuration Split](#configuration-split)
 - [Translations](#translations)
+- [Particular commands](#particular-commands)
 - [PHPCS](#phpcs)
 - [Grumphp](#grumphp)
+
+# Docksal
+
+First you need to [install docksal](https://docksal.io/installation).
+
+> Note: You might need to install `docker` if you do not yet install it for your setup.
+
+After that you clone this project and run
+
+```
+fin init
+```
+
+***Monitor the console outputs carefully. The superadmin access will be returned there.***
+
+> Note: Drupal will avalaible through [`http://drupal-boilerplate.docksal:8080/`](http://drupal-boilerplate.docksal:8080/).
 
 # Composer
 
 To install php components, run
 
 ```
-composer install
+fin composer install
 ```
 
 With `composer require ...` you can download new dependencies to your
 installation.
 Example:
 ```
-composer require drupal/devel:~1.0
+fin composer require drupal/devel:~1.0
 ```
 
 To check component version, run
 
 ```
-composer outdated
+fin composer outdated
 ```
 
 To update composer packages, run
 
 ```
-composer update
+fin composer update
 ```
 
 #### How can I apply patches to downloaded modules?
@@ -61,7 +79,7 @@ Use _/patches_ directory to put patches files.
 
 This project has a php with an xdebug installed and activated, ready to use.
 
-To set it up with the IDE : [xdebug + phpstorm](https://www.jetbrains.com/help/phpstorm/configuring-xdebug.html)
+To set it up with the IDE : [Docksal + xdebug + phpstorm](https://docs.docksal.io/tools/xdebug/)
 
 
 # Configuration split
@@ -73,8 +91,6 @@ There are three splits of configurations :
 - hors_prod : related to hors_prod environnement (_/config/splits/hors_prod_)
 - prod : related to prod environnement (_/config/splits/prod_)
 
-in settings.php
-
 ```
 $config['config_split.config_split.dev']['status'] = TRUE;
 $config['config_split.config_split.hors_prod']['status'] = FALSE;
@@ -84,13 +100,13 @@ $config['config_split.config_split.prod']['status'] = FALSE;
 To import
 
 ```
-drush cim -y
+fin drush cim -y
 ```
 
 To export
 
 ```
-drush csex -y
+fin drush csex -y
 ```
 
 
@@ -103,15 +119,28 @@ Translations directory is stored (configured) _/config/translations_
 To check for updates
 
 ```
-drush locale-check
+fin drush locale-check
 ```
 
 To update
 
 ```
-drush locale-update
+fin drush locale-update
 ```
 
+# Particular commands
+
+To reinstall composer package, remove vendor, core and contrib modules/themes :
+
+```
+fin reinstall
+```
+
+To install or update local environment : install new components, update database, import configurations, etc ...
+
+```
+fin update-site
+```
 
 # Phpcs
 
@@ -122,19 +151,19 @@ The verification is done in the _/www/modules/custom_ directory.
 - Run phpcs to list all php code style evaluations :
 
 ```
-./vendor/bin/phpcs --standard=Drupal,DrupalPractice -p --colors ./www/modules/custom
+fin phpcs
 ```
 
 - Run phpcsf to fix all php code style evaluations that can be fixed automatically :
 
 ```
-./vendor/bin/phpcbf --standard=Drupal,DrupalPractice -p --colors ./www/modules/custom
+fin phpcs-fix
 ```
 
 - Run phpcs to summary php code style evaluations :
 
 ```
-./vendor/bin/phpcs --report=summary --standard=Drupal,DrupalPractice -p --colors ./www/modules/custom
+fin phpcs-summary
 ```
 
 # Grumphp
@@ -144,3 +173,6 @@ The verification is done in the _/www/modules/custom_ directory.
 [PhpLint](https://github.com/phpro/grumphp/blob/master/doc/tasks/phplint.md), [PhpUnit](https://github.com/phpro/grumphp/blob/master/doc/tasks/phplint.md) and [PhpCs](https://github.com/phpro/grumphp/blob/master/doc/tasks/phpcs.md) are launched at each commit.
 
 > Note: phpro/grumphp is fixed in 0.18.1 version because at the moment I write this doc, the recent version of grumphp is not compatible (has conflit) with some drupal dependencies.
+
+
+[Look](https://github.com/docksal/boilerplate-drupal8-composer)
