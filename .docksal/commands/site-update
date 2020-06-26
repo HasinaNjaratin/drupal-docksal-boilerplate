@@ -4,20 +4,18 @@
 # Abort if anything fails
 set -e
 
-DRUSH="$(pwd)/vendor/bin/drush -r $(pwd)/www"
-
 echo "START LOCAL SYNCHRONOZATION ..."
 composer install
 echo "Cleaning cache ..."
-$DRUSH cr
+fin drush cr
 echo "Importing configurations ..."
-$DRUSH cim --partial -y
+fin drush cim --partial -y
 echo "Updating database ..."
-$DRUSH updatedb -y
+fin drush updatedb -y
 echo "Updating translation ..."
-$DRUSH pm-enable locale -y
-$DRUSH locale-check -y
-$DRUSH locale-update -y
+fin drush pm-enable locale -y
+fin drush locale-check -y
+fin drush locale-update -y
 echo "Cleaning cache ..."
-$DRUSH cr
+fin drush cr
 echo "END LOCAL SYNCHRONOZATION"

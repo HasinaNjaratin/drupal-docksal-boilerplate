@@ -34,7 +34,7 @@ fin init
 To create a drupal instance
 
 ```
-fin init-site
+fin site-install
 ```
 
 will install the drupal website automatically according to configurations you have set in _.docksal/settings/site_config.sh_
@@ -146,13 +146,13 @@ fin drush locale-update
 To reinstall composer package, remove vendor, core and contrib modules/themes :
 
 ```
-fin reinstall
+fin compoer-reset
 ```
 
 To install or update local environment : install new components, update database, import configurations, etc ...
 
 ```
-fin update-site
+fin site-update
 ```
 
 # Phpcs
