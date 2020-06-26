@@ -4,6 +4,7 @@ It is set with most popular and used modules for drupal, such as [devel](https:/
 **Table of Contents**
 
 - [Docksal](#docksal)
+- [Drupal generator](#drupal-generator)
 - [Composer](#composer)
 - [Xdebug](#xdebug)
 - [Configuration Split](#configuration-split)
@@ -27,6 +28,18 @@ fin init
 ***Monitor the console outputs carefully. The superadmin access will be returned there.***
 
 > Note: Drupal will avalaible through [`http://drupal-boilerplate.docksal:8080/`](http://drupal-boilerplate.docksal:8080/).
+
+# Drupal generator
+
+To create a drupal instance
+
+```
+fin init-site
+```
+
+will install the drupal website automatically according to configurations you have set in _.docksal/settings/site_config.sh_
+
+> Note: You no longer have to run this command if you have already run the `fin init` command. This is just to let you know that it exists and that you can use it if you want to re-install a new drupal install from the same docksal instance.
 
 # Composer
 
@@ -174,5 +187,4 @@ fin phpcs-summary
 
 > Note: phpro/grumphp is fixed in 0.18.1 version because at the moment I write this doc, the recent version of grumphp is not compatible (has conflit) with some drupal dependencies.
 
-
-[Look](https://github.com/docksal/boilerplate-drupal8-composer)
+[Look]()

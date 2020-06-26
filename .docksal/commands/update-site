@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+## Update local environment
+# Abort if anything fails
+set -e
+
+DRUSH="$(pwd)/vendor/bin/drush -r $(pwd)/www"
+
+echo "START LOCAL SYNCHRONOZATION ..."
+composer install
+echo "Cleaning cache ..."
+$DRUSH cr
+echo "Importing configurations ..."
+$DRUSH cim --partial -y
+echo "Updating database ..."
+$DRUSH updatedb -y
+echo "Updating translation ..."
+$DRUSH pm-enable locale -y
+$DRUSH locale-check -y
+$DRUSH locale-update -y
+echo "Cleaning cache ..."
+$DRUSH cr
+echo "END LOCAL SYNCHRONOZATION"
